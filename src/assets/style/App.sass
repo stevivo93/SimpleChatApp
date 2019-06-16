@@ -1,4 +1,4 @@
-$primary-color: #8c2397
+$primary-color: #4CAF50
 $secondary-color: #ffffff
 $background-color: #f4f5f9
 $button-color : #7ED321
@@ -80,9 +80,31 @@ $button-color : #7ED321
 .chat-header
   background-color: $primary-color
   color: $secondary-color
-  font-size: 1.8rem
-  font-weight: bold
   height: 50px
+  width: 100%
+
+  div
+    display: inline-block
+  
+  .logo
+    float: left
+    line-height: 50px
+    padding-left: 16px
+    font-weight: bold
+    font-size: 1.3rem
+
+  .logout 
+    float: right
+    line-height: 50px
+    cursor: pointer
+    padding: 0px 16px
+  
+    &:hover
+      background-color: rgba(0,0,0,0.2)
+  
+  .user
+    line-height: 50px
+    font-weight: bold
 
 .chat-target
   border-bottom: 1px solid $background-color
@@ -104,10 +126,16 @@ $button-color : #7ED321
   input
     width: 75%
     height: 34px
+    border: 1px solid $primary-color
   
   button 
     width: 20%
-    height: 40px
+    height: 38px
+    background-color: $primary-color
+    font-weight: bold
+    color: $secondary-color
+    border: 1px solid $primary-color
+    cursor: pointer
 
 .left-chat
   padding: 5px 10px
@@ -119,9 +147,13 @@ $button-color : #7ED321
 
 .right-chat
   padding: 5px 10px
-  background-color: #7f3f98
+  background-color: #42b549
   border-radius: 5px
   max-width: 40%
   margin: 5px
   display: inline-block
   color: $secondary-color
+
+.time-message
+  font-size: 0.5rem
+  opacity: 0.7

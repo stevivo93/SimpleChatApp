@@ -41,12 +41,10 @@ class Chat extends Component {
             }
             return target
         })
-
         this.setState({
             targetList:target,
             target:target[0],
         })
-
         this.getMessageFromDB(this.state.user, target[0]);
     }
 
@@ -79,7 +77,7 @@ class Chat extends Component {
         
         firebase.database().ref("message/").on('child_added', function(data){
             if(data.val().to === user){
-                let notify = new Notification('New message from '+data.val().from,{
+                new Notification('New message from '+data.val().from,{
                     'body':data.val().text,
                     'tag':data.getKey
                 });
@@ -143,15 +141,15 @@ class Chat extends Component {
                 if (mes.to === user){
                     return(
                         <div style={{textAlign:'left'}} key={mes.id}>
-                            <div style={{textAlign:'center'}}>{this.getDate(mes.date)}</div>
-                            <div className='left-chat'>{mes.text} {this.getTime(mes.date)}</div>
+                            <div style={{textAlign:'center'}}><div style={{display:'inline-block',background:'#eee',padding:'4px 10px', margin:'5px',borderRadius:'15px'}}>{this.getDate(mes.date)}</div></div>
+                            <div className='left-chat'>{mes.text} <span className="time-message">{this.getTime(mes.date)}</span></div>
                         </div>
                     )
                 } else {
                     return(
                         <div style={{textAlign:'right'}} key={mes.id}>
                             <div style={{textAlign:'center'}}>{this.getDate(mes.date)}</div>
-                            <div className='right-chat'>{mes.text} {this.getTime(mes.date)}</div>
+                            <div className='right-chat'>{mes.text} <span className="time-message">{this.getTime(mes.date)}</span></div>
                         </div>
                     )
                 }
@@ -159,13 +157,13 @@ class Chat extends Component {
                 if (mes.to === user){
                     return(
                         <div style={{textAlign:'left'}} key={mes.id}>
-                            <div className='left-chat'>{mes.text} {this.getTime(mes.date)}</div>
+                            <div className='left-chat'>{mes.text} <span className="time-message">{this.getTime(mes.date)}</span></div>
                         </div>
                     )
                 } else {
                     return(
                         <div style={{textAlign:'right'}} key={mes.id}>
-                            <div className='right-chat'>{mes.text} {this.getTime(mes.date)}</div>
+                            <div className='right-chat'>{mes.text} <span className="time-message">{this.getTime(mes.date)}</span></div>
                         </div>
                     )
                 }
@@ -177,8 +175,11 @@ class Chat extends Component {
         return (
             <div className='chat'>
                 <div className='chat-header'>
-                    {this.state.user}
-                    {/* <div onClick={this.outChat}>Keluar</div> */}
+                    <div className='logo'>CHATAPP</div>
+                    <div className='user'>Hallo, {this.state.user} </div>
+                    <div className='logout'>
+                        <span onClick={this.outChat}>Keluar</span>
+                    </div>
                 </div>
 
                 <div className='chat-box'>
